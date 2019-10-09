@@ -21,6 +21,27 @@ class KeyInputBlock:
         pass
 
 
+class TextBlock:
+    def __init__(self, tk, button_text):
+        self.text_frame = tkinter.Frame(master=tk, bg="#f5f5f5", bd=2)
+        self.input_text = tkinter.Text(master=self.text_frame)
+        self.button = tkinter.Button(master=self.text_frame, text=button_text, command=self.encrypt)
+        self.output_text = tkinter.Text(master=self.text_frame)
+
+    def draw_interface(self, col):
+        self.text_frame.grid(column=col, row=1, sticky="WESN")
+        self.input_text.grid(column=0, row=0, sticky="WESN")
+        self.button.grid(column=0, row=1, sticky="WESN")
+        self.output_text.grid(column=0, row=2, sticky="WESN")
+
+        self.text_frame.columnconfigure(0, weight=1)
+        self.text_frame.rowconfigure(0, weight=1)
+        self.text_frame.rowconfigure(2, weight=1)
+
+    def encrypt(self):
+        pass
+
+
 class Application(tkinter.Tk):
 
     def __init__(self):
@@ -35,14 +56,18 @@ class Application(tkinter.Tk):
 
         self.public_key_block = KeyInputBlock(self, 'Public key')
         self.private_key_block = KeyInputBlock(self, 'Private key')
+        self.encrypt_text = TextBlock(self, 'Encrypt')
+        self.decrypt_text = TextBlock(self, 'Decrypt')
 
     def draw_interface(self):
         self.columnconfigure(0, weight=1)
         self.columnconfigure(1, weight=1)
-        self.rowconfigure(0, weight=1)
+        self.rowconfigure(1, weight=1)
 
         self.public_key_block.draw_interface(0)
         self.private_key_block.draw_interface(1)
+        self.encrypt_text.draw_interface(0)
+        self.decrypt_text.draw_interface(1)
 
 
 if __name__ == '__main__':
