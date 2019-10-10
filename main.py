@@ -46,7 +46,7 @@ class TextBlock:
     def __init__(self, tk, button_text, func):
         self.text_frame = tkinter.Frame(master=tk, bg="#f5f5f5", bd=2)
         self.input_text = tkinter.Text(master=self.text_frame)
-        self.button = tkinter.Button(master=self.text_frame, text=button_text, command=func)
+        self.button = tkinter.Button(master=self.text_frame, text=button_text, command=func, bg='#e0ccff')
         self.output_text = tkinter.Text(master=self.text_frame)
 
     def draw_interface(self, col):
@@ -70,7 +70,7 @@ class Application(tkinter.Tk):
         self.bind('<Escape>', lambda e: self.destroy())
 
         self.title("Text encryption")
-        self.iconbitmap('img/lock.ico')
+        self.iconbitmap('img/app_icon.ico')
 
         self.public_key_block = KeyInputBlock(self, 'Public key', 'pub')
         self.private_key_block = KeyInputBlock(self, 'Private key', 'prv')
